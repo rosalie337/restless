@@ -20,4 +20,15 @@ describe('Restless container', () => {
 
     expect(wrapper.state('url')).toEqual('www.spacejam.com');
   });
+
+  it('can change method in state', () => {
+    restLess.handleChange({
+      target: {
+        name: 'method',
+        value: 'GETEM'
+      }
+    });
+
+    expect(wrapper.state('method')).toEqual('GETEM');
+  });
 });
