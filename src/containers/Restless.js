@@ -17,7 +17,7 @@ export default class Restless extends Component{
 
   handleSubmit = event => {
     event.preventDefault();
-    fetch();
+    this.fetch();
   }
 
   fetch = () => {
