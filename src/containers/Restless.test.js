@@ -31,4 +31,15 @@ describe('Restless container', () => {
 
     expect(wrapper.state('method')).toEqual('GETEM');
   });
+
+  it('can change body in state', () => {
+    restLess.handleChange({
+      target: {
+        name: 'body',
+        value: 'i am a good body'
+      }
+    });
+
+    expect(wrapper.state('body')).toEqual('i am a good body');
+  });
 });
