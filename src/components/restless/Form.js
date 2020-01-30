@@ -31,7 +31,7 @@ const Form = ({ url, method, body, onSubmit, onChange }) => {
           </div>
           <button>Go!</button>
         </section>
-        <textarea name="body" value={body} onChange={onChange}></textarea>
+        <textarea placeholder="Raw JSON Body" name="body" value={body} onChange={onChange}></textarea>
       </form>
     </section>
   );

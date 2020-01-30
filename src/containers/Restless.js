@@ -9,7 +9,8 @@ export default class Restless extends Component{
     url: '',
     method: '',
     body: '',
-    display: ''
+    display: '',
+    history: []
   }
 
   handleChange = ({ target }) => {
@@ -24,7 +25,7 @@ export default class Restless extends Component{
   fetch = () => {
     const { url, method, body } = this.state;
     fetchApi(url, method, body)
-      .then(res => this.setState({ display: JSON.stringify(res) }));
+      .then(res => this.setState({ display: JSON.stringify(res, null, 4) }));
   }
 
   render(){
