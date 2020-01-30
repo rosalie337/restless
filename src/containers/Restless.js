@@ -3,6 +3,7 @@ import Header from '../components/restless/Header';
 import Form from '../components/restless/Form';
 import fetchApi from '../services/fectchApi';
 import Display from '../components/restless/Display';
+import HistoryList from '../components/restless/HistoryList';
 
 export default class Restless extends Component{
   state ={
@@ -26,20 +27,30 @@ export default class Restless extends Component{
     const { url, method, body } = this.state;
     fetchApi(url, method, body)
       .then(res => this.setState({ display: JSON.stringify(res, null, 4) }));
+    this.setState(state => ({
+      history: [...state.history, {
+        url: state.url,
+        method: state.method,
+        body: state.body
+      }]
+    }));
   }
 
   render(){
-    const { url, method, body, display } = this.state;
+    const { url, method, body, display, history } = this.state;
 
     return (
       <>
         <Header/>
-        <Form 
-          url={url} 
-          method={method} 
-          body={body} 
-          onSubmit={this.handleSubmit} 
-          onChange={this.handleChange} />
+        <section>
+          <Form 
+            url={url} 
+            method={method} 
+            body={body} 
+            onSubmit={this.handleSubmit} 
+            onChange={this.handleChange} />
+          <HistoryList history={history}/>
+        </section>
         <Display display={display} />
       </>
     );
