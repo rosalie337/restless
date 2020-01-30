@@ -1,5 +1,4 @@
 const fetchApi = (url, method, body) => {
-  console.log(url);
   if(method !== 'GET'){
     return fetch(url, {
       method,

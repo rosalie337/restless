@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../components/restless/Header';
 import Form from '../components/restless/Form';
 import fetchApi from '../services/fectchApi';
+import Display from '../components/restless/Display';
 
 export default class Restless extends Component{
   state ={
@@ -23,11 +24,11 @@ export default class Restless extends Component{
   fetch = () => {
     const { url, method, body } = this.state;
     fetchApi(url, method, body)
-      .then(res => this.setState({ display: res }));
+      .then(res => this.setState({ display: JSON.stringify(res) }));
   }
 
   render(){
-    const { url, method, body } = this.state;
+    const { url, method, body, display } = this.state;
 
     return (
       <>
@@ -38,6 +39,7 @@ export default class Restless extends Component{
           body={body} 
           onSubmit={this.handleSubmit} 
           onChange={this.handleChange} />
+        <Display display={display} />
       </>
     );
   }
