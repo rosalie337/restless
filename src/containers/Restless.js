@@ -3,14 +3,13 @@ import Header from '../components/restless/Header';
 import Form from '../components/restless/Form';
 import { fetchApi } from '../services/fetchApi';
 import Display from '../components/restless/Display';
-import HistoryList from '../components/restless/HistoryList';
 
 export default class Restless extends Component{
   state ={
     url: '',
     method: '',
     body: '',
-    display: '',
+    display: { 'Hello':'Please make a fetch!' },
     history: []
   }
 
@@ -23,6 +22,17 @@ export default class Restless extends Component{
     this.fetch();
   }
 
+  handleClick = event => {
+    const { id } = event.target;
+    console.log(id);
+    this.setState(({ history }) => {
+      return {
+        url: history[id].url,
+        method: history[id].method,
+        body: history[id].body
+      };});
+  }
+
   fetch = () => {
     const { url, method, body } = this.state;
     this.setState(state => ({
@@ -33,7 +43,7 @@ export default class Restless extends Component{
       }]
     }));
     return fetchApi(url, method, body)
-      .then(res => this.setState({ display: JSON.stringify(res, null, 4) }));
+      .then(res => this.setState({ display: res }));
   }
 
   render(){
@@ -49,7 +59,6 @@ export default class Restless extends Component{
             body={body} 
             onSubmit={this.handleSubmit} 
             onChange={this.handleChange} />
-          <HistoryList history={history}/>
         </section>
         <Display display={display} />
       </>
