@@ -15,6 +15,14 @@ export default class Restless extends Component{
     display: { 'Hello':'Please make a fetch!' }
   }
 
+  componentDidMount(){
+    const historyStored = JSON.parse(localStorage.getItem('history'));
+    
+    if(historyStored){
+      this.setState({ history: historyStored });
+    }
+  }
+
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   }
@@ -35,7 +43,10 @@ export default class Restless extends Component{
         key: `${state.url}+${state.method}`
       }]
     }));
-    
+
+    this.setState(state => {
+      localStorage.setItem('history', JSON.stringify(state.history));
+    });
   }
 
   handleClick = event => {
