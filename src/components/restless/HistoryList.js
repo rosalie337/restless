@@ -5,7 +5,7 @@ import HistoryItem from './HistoryItem';
 const HistoryList = ({ history, onClick }) => {
   const historyElements = history.map((item, i) => {
     return (
-      <li key={i} onClick={onClick}>
+      <li key={`${item.method}+${item.url}`} onClick={onClick}>
         <HistoryItem method={item.method} url={item.url} id={i} />
       </li>
     );
