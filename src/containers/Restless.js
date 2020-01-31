@@ -51,12 +51,19 @@ export default class Restless extends Component{
 
   handleClick = event => {
     const { id } = event.target;
-    this.setState(({ history }) => {
-      return {
-        url: history[id].url,
-        method: history[id].method,
-        body: history[id].body
-      };});
+    let result;
+
+    this.state.history.forEach(item => {
+      if(item.key === id){
+        result = item;
+      }
+    });
+
+    this.setState({
+      url: result.url,
+      method: result.method,
+      body: result.body
+    });
   }
 
   fetch = () => {

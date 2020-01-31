@@ -7,7 +7,7 @@ const HistoryList = ({ history, onClick }) => {
   const historyElements = history.map((item, i) => {
     return (
       <li key={`${item.method}+${item.url}`} onClick={onClick}>
-        <HistoryItem method={item.method} url={item.url} id={i} />
+        <HistoryItem method={item.method} url={item.url} id={`${item.url}+${item.method}`} />
       </li>
     );
   });
