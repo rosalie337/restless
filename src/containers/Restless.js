@@ -12,7 +12,7 @@ export default class Restless extends Component{
     method: '',
     body: '',
     history: [],
-    display: { 'Hello':'Please make a fetch!' }
+    display: { 'Hello':'I am bored. PLEASE make a fetch!' }
   }
 
   componentDidMount(){
