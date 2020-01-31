@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/restless/Header';
 import Form from '../components/restless/Form';
-import fetchApi from '../services/fectchApi';
+import { fetchApi } from '../services/fetchApi';
 import Display from '../components/restless/Display';
 import HistoryList from '../components/restless/HistoryList';
 
@@ -25,8 +25,6 @@ export default class Restless extends Component{
 
   fetch = () => {
     const { url, method, body } = this.state;
-    fetchApi(url, method, body)
-      .then(res => this.setState({ display: JSON.stringify(res, null, 4) }));
     this.setState(state => ({
       history: [...state.history, {
         url: state.url,
@@ -34,6 +32,8 @@ export default class Restless extends Component{
         body: state.body
       }]
     }));
+    return fetchApi(url, method, body)
+      .then(res => this.setState({ display: JSON.stringify(res, null, 4) }));
   }
 
   render(){

@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Restless from './Restless';
 
+jest.mock('../services/fetchApi.js');
+
 describe('Restless container', () => {
   let wrapper;
   let restLess;
@@ -41,5 +43,16 @@ describe('Restless container', () => {
     });
 
     expect(wrapper.state('body')).toEqual('i am a good body');
+  });
+
+  it('can update history and display on fetch', () => {
+
+    return restLess.fetch()
+      .then(() => {
+        expect(JSON.parse(wrapper.state('display'))).toEqual([
+          { text: 'i am a response' },
+          { text: 'i too can respond' }
+        ]);
+      });
   });
 });

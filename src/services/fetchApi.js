@@ -1,4 +1,4 @@
-const fetchApi = (url, method, body) => {
+export const fetchApi = (url, method, body) => {
   if(method !== 'GET'){
     return fetch(url, {
       method,
@@ -13,5 +13,3 @@ const fetchApi = (url, method, body) => {
   return fetch(url)
     .then(res => res.json());
 };
-
-export default fetchApi;
