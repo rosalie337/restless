@@ -49,7 +49,7 @@ describe('Restless container', () => {
 
     return restLess.fetch()
       .then(() => {
-        expect(JSON.parse(wrapper.state('display'))).toEqual([
+        expect(wrapper.state('display')).toEqual([
           { text: 'i am a response' },
           { text: 'i too can respond' }
         ]);

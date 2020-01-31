@@ -13,7 +13,7 @@ const Display = ({ display }) => {
 };
 
 Display.propTypes = {
-  display: PropTypes.string.isRequired
+  display: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired
 };
 
 export default Display;
