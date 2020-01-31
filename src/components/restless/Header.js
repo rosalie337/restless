@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './Header.css';
 
 const Header = () => {
   return (
-    <header>
+    <header className={styles.Header}>
       <h1>
         RESTless
       </h1>
