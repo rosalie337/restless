@@ -9,8 +9,7 @@ export default class Restless extends Component{
     url: '',
     method: '',
     body: '',
-    display: { 'Hello':'Please make a fetch!' },
-    history: []
+    display: { 'Hello':'Please make a fetch!' }
   }
 
   handleChange = ({ target }) => {
@@ -24,7 +23,6 @@ export default class Restless extends Component{
 
   handleClick = event => {
     const { id } = event.target;
-    console.log(id);
     this.setState(({ history }) => {
       return {
         url: history[id].url,
@@ -35,19 +33,12 @@ export default class Restless extends Component{
 
   fetch = () => {
     const { url, method, body } = this.state;
-    this.setState(state => ({
-      history: [...state.history, {
-        url: state.url,
-        method: state.method,
-        body: state.body
-      }]
-    }));
     return fetchApi(url, method, body)
       .then(res => this.setState({ display: res }));
   }
 
   render(){
-    const { url, method, body, display, history } = this.state;
+    const { url, method, body, display } = this.state;
 
     return (
       <>

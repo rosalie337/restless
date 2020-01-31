@@ -6,7 +6,7 @@ import ReactJson from 'react-json-view';
 const Display = ({ display }) => {
   return (
     <pre>
-      <ReactJson src={display} />
+      <ReactJson src={display} displayDataTypes={false} />
     </pre>
   );
 };
