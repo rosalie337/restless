@@ -4,6 +4,7 @@ import Form from '../components/restless/Form';
 import { fetchApi } from '../services/fetchApi';
 import Display from '../components/restless/Display';
 import HistoryList from '../components/restless/HistoryList';
+import styles from './Restless.css';
 
 export default class Restless extends Component{
   state ={
@@ -25,7 +26,7 @@ export default class Restless extends Component{
     event.preventDefault();
     this.fetch();
     
-    if(history.filter(item => item.key === key).length > 0) return;
+    if(history.filter(item => item.key === key).length > 0 || method === '') return;
     this.setState(state => ({
       history: [...state.history, {
         url: state.url,
@@ -59,16 +60,19 @@ export default class Restless extends Component{
     return (
       <>
         <Header/>
-        <section>
+        <section className={styles.Restless}>
           <HistoryList history={history} onClick={this.handleClick} />
-          <Form 
-            url={url} 
-            method={method} 
-            body={body} 
-            onSubmit={this.handleSubmit} 
-            onChange={this.handleChange} />
+          <div>
+            <Form 
+              url={url} 
+              method={method} 
+              body={body} 
+              onSubmit={this.handleSubmit} 
+              onChange={this.handleChange} />
+            <Display display={display} />
+          </div>
         </section>
-        <Display display={display} />
+        
       </>
     );
   }
